@@ -1,14 +1,22 @@
-<ion-header>
-  <ion-navbar>
+<ion-header >
+  <ion-navbar color="danger">
     <ion-title>
-      Ionic Blank
+      Ordenes
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <button ion-item *ngFor="let row of data" (click)="itemSelected(row)">
+      <ion-icon name="person"></ion-icon> {{row.name}} {{row.last_name}} ({{row.document}})
+      <p>{{row.created_at}}</p>
+      <span item-end>{{row.status}}</span>
+    </button>  
+</ion-list>
+<ion-fab bottom right>
+  <button ion-fab mini color="danger"><ion-icon name="add" (click)="openOrder()"></ion-icon></button>
+</ion-fab>
+
+
 </ion-content>
