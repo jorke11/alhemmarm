@@ -13,7 +13,8 @@ export class ConfigProvider {
   SERVER_IP:any
 
   constructor(public http: HttpClient) {
-    this.SERVER_IP='http://192.168.1.4';
+    //this.SERVER_IP='http://18.221.23.10';
+    this.SERVER_IP='http://192.168.1.2';
   }
 
 }

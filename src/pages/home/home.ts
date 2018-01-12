@@ -17,6 +17,9 @@ export class HomePage {
   constructor(public navCtrl: NavController,public http:Http,public config:ConfigProvider,
     public modalCtrl:ModalController,public viewCtrl:ViewController,public toastCtrl:ToastController) {
     this.data=[]
+    
+  }
+  ionViewDidLoad(){
     this.loadOrder()
   }
 
@@ -40,24 +43,50 @@ export class HomePage {
     );
 
   }
+
   itemSelected(item){
 
   }
 
-  openOrder(){
+  cancelOrder(row){
+    let headers = new Headers();
+    headers.append("Content-Type","application/json");
+    headers.append("Accept","application/json");
+    
+    headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
+    console.log(window.localStorage.getItem("token"))
+
+    this.http.get(this.config.SERVER_IP+"/cancelOrders/"+row.id,{headers:headers})
+    .map(res=>res.json())
+    .subscribe(
+      data=>{
+        
+        this.data=data;
+      },
+      err=>{
+        console.log("llego a error:");
+        console.log(JSON.stringify(err))
+      }
+    );
+  }
+
+  openModalOrder(){
+    
     let modalGuard = this.modalCtrl.create(OrderPage);
     modalGuard.present();
-    modalGuard.dismiss
-
+    
     modalGuard.onDidDismiss(data=>{
-      let toast=this.toastCtrl.create({
-        message:'Has creado una nueva Orden',
-        duration:2500
-      })
-      this.data.push(data);
       
-      toast.present()
-      }
+      if(data!=undefined){
+        let toast=this.toastCtrl.create({
+          message:'Has creado una nueva Orden',
+          duration:2500
+        })
+        this.data.push(data);
+        
+        toast.present()
+        }
+    }
     )
   }
 

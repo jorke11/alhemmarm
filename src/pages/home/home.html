@@ -7,15 +7,28 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <button ion-item *ngFor="let row of data" (click)="itemSelected(row)">
-      <ion-icon name="person"></ion-icon> {{row.name}} {{row.last_name}} ({{row.document}})
-      <p>{{row.created_at}}</p>
-      <span item-end>{{row.status}}</span>
-    </button>  
-</ion-list>
+
+  <ion-card *ngFor="let row of data" (click)="itemSelected(row)">
+      <button ion-item>
+          <ion-icon name="person" item-start></ion-icon>
+          {{row.name}} {{row.last_name}} ({{row.document}})
+          <p>{{row.created_at}}</p>
+          <span item-end>{{row.status}}</span>
+      </button>
+
+      <ion-row no-padding>
+          <ion-col text-right>
+            <button ion-button clear small color="danger" icon-start (click)="cancelOrder(row)">
+              <ion-icon name='share-alt'></ion-icon>
+              Cancelar
+            </button>
+          </ion-col>
+        </ion-row>
+    
+  </ion-card>
+        
 <ion-fab bottom right>
-  <button ion-fab mini color="danger"><ion-icon name="add" (click)="openOrder()"></ion-icon></button>
+  <button ion-fab color="danger" (click)="openModalOrder()"><ion-icon name="add" ></ion-icon></button>
 </ion-fab>
 
 

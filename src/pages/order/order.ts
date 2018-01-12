@@ -46,7 +46,10 @@ export class OrderPage {
         console.log(JSON.stringify(err))
       }
     );
+  }
 
+  close(){
+    this.navCtrl.pop();
   }
 
 }
