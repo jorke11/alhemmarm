@@ -18,6 +18,7 @@ export class ConfigProvider {
     this.SERVER_IP='http://alhemmar.com';
     //this.SERVER_IP='http://localhost';
     
+
   }
 
 }
