@@ -8,7 +8,13 @@
 
   <ion-navbar color="danger">
     <ion-title>Crear Order</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+
 
 </ion-header>
 
@@ -16,7 +22,13 @@
 <ion-content padding>
 
   <ion-list>
-    
+      <ion-item>
+        <ion-label floating>Tipo de servicio</ion-label>
+        <ion-select [(ngModel)]="form.type_service_id">
+          <ion-option  *ngFor="let row of schedules" [value]="row">{{row.services}}</ion-option>
+        </ion-select>
+      </ion-item>
+
       <ion-item>
         <ion-label floating>Nombre</ion-label>
         <ion-input type="email" value="" [(ngModel)]="form.name"></ion-input>
@@ -41,21 +53,18 @@
         <ion-label floating>Documento</ion-label>
         <ion-input type="text" [(ngModel)]="form.document"></ion-input>
       </ion-item>
-      <ion-item>
-        <ion-label floating>Centro de Costo</ion-label>
-        <ion-input type="text" [(ngModel)]="form.cost_center"></ion-input>
-      </ion-item>
+      
       <ion-item>
         <ion-label floating>Departamento</ion-label>
         <ion-select [(ngModel)]="form.department_id">
-          <ion-option value="1">Departamento Prueba</ion-option>
+          <ion-option  *ngFor="let row of departments" [value]="row" (ionSelect)="optionSelected($event)" >{{row.description}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Ciudad</ion-label>
         <ion-select [(ngModel)]="form.city_id">
-          <ion-option value="1">Ciudad Prueba</ion-option>
+          <ion-option *ngFor="let item of cities" [value]="row" >{{item.description}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>

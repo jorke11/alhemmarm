@@ -26,7 +26,7 @@ export class HomePage {
     headers.append("Accept","application/json");
     
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
-    console.log(window.localStorage.getItem("token"))
+    
     this.http.get(this.config.SERVER_IP+"/getOrders",{headers:headers})
     .map(res=>res.json())
     .subscribe(
@@ -50,13 +50,16 @@ export class HomePage {
     modalGuard.dismiss
 
     modalGuard.onDidDismiss(data=>{
-      let toast=this.toastCtrl.create({
-        message:'Has creado una nueva Orden',
-        duration:2500
-      })
-      this.data.push(data);
-      
-      toast.present()
+      if(data != undefined){
+          let toast=this.toastCtrl.create({
+            message:'Has creado una nueva Orden',
+            duration:2500
+          })
+
+          this.data.push(data);
+          
+          toast.present()
+        }
       }
     )
   }

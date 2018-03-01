@@ -4,7 +4,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { ProfilePage } from '../pages/profile/profile';
+import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -19,7 +22,8 @@ export class MyApp {
     this._token=null
       
         if ( window.localStorage.getItem("token") === null || window.localStorage.getItem("token")=="undefined") {
-          this.rootPage = LoginPage;
+          //this.rootPage = LoginPage;
+          this.rootPage = TabsPage;
         }else{
           this.rootPage = HomePage;
         }
@@ -33,6 +37,7 @@ export class MyApp {
     
         this.pages=[
           {titulo:"Inicio",component: HomePage , icon: "home"},
+          {titulo:"Perfil",component: ProfilePage , icon: "person"},
           
         ];
 
@@ -42,6 +47,15 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }  
+  goToPage(page){
+    this.nav.setRoot(page);
   }
+
+  closeSession(){
+    window.localStorage.removeItem("token");
+    this.nav.setRoot(LoginPage);
+  }
+ 
 }
 

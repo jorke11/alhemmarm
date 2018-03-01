@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
 import {Http,Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -19,8 +19,7 @@ export class LoginPage {
   public password:string
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  public config:ConfigProvider,public http:Http) {
-    console.log(this.config.SERVER_IP)
+  public config:ConfigProvider,public http:Http, private app: App) {
   }
 
   ionViewDidLoad() {
@@ -35,19 +34,20 @@ export class LoginPage {
     headers.append("Access-Control-Allow-Origin","*");
     
     let param={email:this.email,password:this.password};
-    console.log(this.email)
-    console.log(this.password)
-    this.http.post(this.config.SERVER_IP+"/user/login/",param,{headers:headers})
+   
+    this.http.post(this.config.SERVER_IP+"/user/login",param,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
-        this.data=data;
+        this.data =data;
         window.localStorage.setItem("token",data.token)
-        this.navCtrl.push(HomePage);
+        this.app.getRootNav().setRoot(HomePage)
+        //this.navCtrl.setRoot(HomePage);
+        //this.navCtrl.push(HomePage);
       },
       err=>{
         console.log("llego a error:");
-        console.log(JSON.stringify(err))
+        alert(JSON.stringify(err))
       }
     );
   }

@@ -8,12 +8,12 @@
 <ion-content padding>
   <img  src="./assets/imgs/logoa.png">
   <ion-list>
-    
+
       <ion-item>
         <ion-label floating>Email</ion-label>
         <ion-input type="email" value="" [(ngModel)]="email"></ion-input>
       </ion-item>
-    
+
       <ion-item>
         <ion-label floating>Password</ion-label>
         <ion-input type="password" [(ngModel)]="password"></ion-input>
@@ -21,6 +21,11 @@
       <ion-item>
           <button ion-button (click)="login()" full color="danger">Ingresar</button>
       </ion-item>
-    
+      
+      <ion-item text-center id="space-welcome">
+        <p>Bienvenido a nuestra Plataforma de datos</p>
+        <p><strong>B16DATA1</strong></p>
+    </ion-item>
+
     </ion-list>
 </ion-content>

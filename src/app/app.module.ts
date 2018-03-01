@@ -10,7 +10,12 @@ import {HttpModule} from '@angular/http'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs';
 import { OrderPage } from '../pages/order/order';
+import { AboutPage } from '../pages/about/about';
+import { ServicesPage } from '../pages/services/services';
+import { ContactPage } from '../pages/contact/contact';
+import { ProfilePage } from '../pages/profile/profile';
 import { ConfigProvider } from '../providers/config/config';
 
 
@@ -19,7 +24,12 @@ import { ConfigProvider } from '../providers/config/config';
     MyApp,
     HomePage,
     LoginPage,
-    OrderPage
+    OrderPage,
+    TabsPage,
+    AboutPage,
+    ServicesPage,
+    ContactPage,
+    ProfilePage,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +43,11 @@ import { ConfigProvider } from '../providers/config/config';
     HomePage,
     LoginPage,
     OrderPage,
+    TabsPage,
+    AboutPage,
+    ServicesPage,
+    ContactPage,
+    ProfilePage,
   ],
   providers: [
     StatusBar,
