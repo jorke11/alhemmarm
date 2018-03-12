@@ -20,7 +20,7 @@
           <span item-end>{{row.status}}</span>
       </button>
 
-      <ion-row no-padding>
+      <ion-row no-padding *ngIf="row.status_id==1">
           <ion-col text-right>
             <button ion-button clear small color="danger" icon-start (click)="cancelOrder(row)">
               <ion-icon name='share-alt'></ion-icon>

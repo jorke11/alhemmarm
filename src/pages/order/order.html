@@ -23,12 +23,20 @@
 <ion-content padding>
 
   <ion-list>
+
       <ion-item>
+          <ion-label floating>Tipo de servicio</ion-label>
+          <ion-input type="email" value="" [(ngModel)]="form.type_service_id" readonly></ion-input>
+          <button clear item-right ion-button (click)="openServices()">Agregar</button>
+      </ion-item>
+
+     <!-- <ion-item>
         <ion-label floating>Tipo de servicio</ion-label>
+        <ion-input type="email" value="" [(ngModel)]="form.type_service_id"></ion-input>
         <ion-select [(ngModel)]="form.type_service_id">
           <ion-option  *ngFor="let row of schedules" [value]="row">{{row.services}}</ion-option>
         </ion-select>
-      </ion-item>
+      </ion-item>-->
 
       <ion-item>
         <ion-label floating>Nombre</ion-label>
@@ -52,20 +60,20 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Documento</ion-label>
-        <ion-input type="text" [(ngModel)]="form.document"></ion-input>
+        <ion-input type="number" [(ngModel)]="form.document"></ion-input>
       </ion-item>
       
       <ion-item>
         <ion-label floating>Departamento</ion-label>
         <ion-select [(ngModel)]="form.department_id">
-          <ion-option  *ngFor="let row of departments" [value]="row" (ionSelect)="optionSelected($event)" >{{row.description}}</ion-option>
+          <ion-option  *ngFor="let row of departments" [value]="row.id" (ionSelect)="optionSelected($event)" >{{row.description}}</ion-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Ciudad</ion-label>
         <ion-select [(ngModel)]="form.city_id">
-          <ion-option *ngFor="let item of cities" [value]="row" >{{item.description}}</ion-option>
+          <ion-option *ngFor="let item of cities" [value]="item.id" >{{item.description}}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
@@ -78,11 +86,11 @@
       </ion-item>
       <ion-item>
         <ion-label floating>Phone</ion-label>
-        <ion-input type="text" [(ngModel)]="form.phone"></ion-input>
+        <ion-input type="number" [(ngModel)]="form.phone"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Movil</ion-label>
-        <ion-input type="text" [(ngModel)]="form.mobil"></ion-input>
+        <ion-input type="number" [(ngModel)]="form.mobil"></ion-input>
       </ion-item>
       <ion-item>
           <button ion-button (click)="newOrder()" full>Solicitar</button>

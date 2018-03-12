@@ -1,9 +1,9 @@
 import { Http,Headers } from '@angular/http';
 import { ConfigProvider } from './../../providers/config/config';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController, ToastController } from 'ionic-angular';
 
-
+import { ModalservicePage } from '../modalservice/modalservice';
 
 @IonicPage()
 @Component({
@@ -19,9 +19,9 @@ export class OrderPage {
   schedules:any
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,
-    public config:ConfigProvider,public viewCtrl:ViewController) {
+    public config:ConfigProvider,public viewCtrl:ViewController,public modalCtrl:ModalController,public toastCtrl:ToastController) {
     this.getDepartments()
-    this.getSchedules()
+    
     this.form={}
   }
 
@@ -29,28 +29,23 @@ export class OrderPage {
     console.log('ionViewDidLoad OrderPage');
   }
 
-  getSchedules(){
-    console.log("scgedyke")
-    let headers = new Headers();
-    headers.append("Content-Type","application/json");
-    headers.append("Accept","application/json");
-    headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
-    this.http.get(this.config.SERVER_IP+"/getServices",{headers:headers})
-    .map(res=>res.json())
-    .subscribe(
-      data=>{
-        console.log(data)
-        this.schedules = data;
-      },
-      err=>{
-        console.log("llego a error:");
-        console.log(JSON.stringify(err))
+
+  openServices() {
+    let modalGuard = this.modalCtrl.create(ModalservicePage);
+    modalGuard.present();
+    
+    modalGuard.onDidDismiss(data=>{
+      if(data != undefined){
+          this.form.type_service_id=data.description;
+        }
       }
-    );
+    )
   }
 
   getDepartments(){
+
     let headers = new Headers();
+
     headers.append("Content-Type","application/json");
     headers.append("Accept","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
@@ -68,12 +63,12 @@ export class OrderPage {
   }
 
   optionSelected(event){
-
+    
     let headers = new Headers();
     headers.append("Content-Type","application/json");
     headers.append("Accept","application/json");
     headers.append("Authorization","Bearer " + window.localStorage.getItem("token"));
-    this.http.get(this.config.SERVER_IP+"/getCities/"+event.id,{headers:headers})
+    this.http.get(this.config.SERVER_IP+"/getCities/"+event,{headers:headers})
     .map(res=>res.json())
     .subscribe(
       data=>{
@@ -85,6 +80,8 @@ export class OrderPage {
       }
     );
   }
+
+  
 
   newOrder(){
     let headers = new Headers();

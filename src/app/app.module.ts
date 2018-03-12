@@ -16,6 +16,8 @@ import { AboutPage } from '../pages/about/about';
 import { ServicesPage } from '../pages/services/services';
 import { ContactPage } from '../pages/contact/contact';
 import { ProfilePage } from '../pages/profile/profile';
+import { ModalservicePage } from '../pages/modalservice/modalservice';
+
 import { ConfigProvider } from '../providers/config/config';
 
 
@@ -30,6 +32,7 @@ import { ConfigProvider } from '../providers/config/config';
     ServicesPage,
     ContactPage,
     ProfilePage,
+    ModalservicePage
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { ConfigProvider } from '../providers/config/config';
     ServicesPage,
     ContactPage,
     ProfilePage,
+    ModalservicePage
   ],
   providers: [
     StatusBar,
