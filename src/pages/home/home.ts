@@ -83,7 +83,6 @@ export class HomePage {
           })
 
           this.data.push(data);
-          
           toast.present()
         }
       }

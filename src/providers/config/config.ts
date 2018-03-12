@@ -14,8 +14,8 @@ export class ConfigProvider {
 
   constructor(public http: HttpClient) {
     //this.SERVER_IP='http://192.168.1.4';
-    this.SERVER_IP='http://192.168.0.3';
-    //this.SERVER_IP='http://alhemmar.com';
+    //this.SERVER_IP='http://192.168.0.3';
+    this.SERVER_IP='http://alhemmar.com';
     //this.SERVER_IP='http://localhost';
     
 
