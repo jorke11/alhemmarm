@@ -82,7 +82,7 @@ export class HomePage {
             duration:2500
           })
 
-          this.data.push(data);
+          this.data.unshift(data);
           toast.present()
         }
       }

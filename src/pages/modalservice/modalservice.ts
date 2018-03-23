@@ -58,9 +58,6 @@ export class ModalservicePage {
             this.viewCtrl.dismiss(element);
           }
       });
-
-      
-      
   }
 
 }
